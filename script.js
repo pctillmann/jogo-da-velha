@@ -163,9 +163,9 @@ class jogoDaVelha {
   }
 }
 
-const jogo = new jogoDaVelha(new JogadorHumano("X"), new JogadorAleatorio("O"));
-jogo.jogar(new Jogada(1, 1)); //X
-jogo.jogar(new Jogada(2, 2)); //O
+//const jogo = new jogoDaVelha(new JogadorHumano("X"), new JogadorAleatorio("O"));
+//jogo.jogar(new Jogada(1, 1)); //X
+//jogo.jogar(new Jogada(2, 2)); //O
 //jogo.jogar(new Jogada(1, 3)); //X
 //jogo.jogar(new Jogada(1, 2)); //O
 //jogo.jogar(new Jogada(3, 1)); //X
@@ -175,4 +175,4 @@ jogo.jogar(new Jogada(2, 2)); //O
 //jogo.jogar(new Jogada(3, 3)); //X
 
 //jogo.finalizouComEmpate();
-console.log(jogo.toString());
+//console.log(jogo.toString());
