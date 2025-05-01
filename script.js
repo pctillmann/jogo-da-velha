@@ -176,3 +176,57 @@ class jogoDaVelha {
 
 //jogo.finalizouComEmpate();
 //console.log(jogo.toString());
+
+class JogoDaVelhaDOM {
+  constructor(tabuleiro, informacoes) {
+    this.tabuleiro = tabuleiro;
+    this.informacoes = informacoes;
+  }
+
+  inicializar(jogo) {
+    this.jogo = jogo;
+    this.#deixarTabuleiroJogavel();
+  }
+
+  #deixarTabuleiroJogavel() {
+    const posicoes = this.tabuleiro.getElementsByClassName("posicao")
+    for(let posicao of posicoes) {
+      posicao.addEventListener("click",(e)=> {
+        let posicaoSelecionada = e.target.attributes;
+        let linha = +posicaoSelecionada.linha.value;
+        let coluna = +posicaoSelecionada.coluna.value;
+        //console.log(`Clique em ${linha} ${coluna}`);
+        this.jogo.jogar(new Jogada(linha, coluna));
+        //console.log(this.jogo.toString());
+        this.#imprimirSimbolos();
+
+      });
+    }
+  }
+
+  #imprimirSimbolos() {
+    let {tabuleiro} = this.jogo;
+    let qtdlinhas = tabuleiro.length;
+    let qtdColunas = tabuleiro[0].length;
+    let posicoes = this.tabuleiro.getElementsByClassName("posicao");
+    for(let linha = 0; linha < qtdlinhas; linha++){
+      for(let coluna = 0; coluna < qtdColunas; coluna++){
+        let indiceDaInterface = linha * qtdlinhas + coluna;
+        posicoes[indiceDaInterface].innerText = tabuleiro[linha][coluna];
+
+      }
+    }
+
+  }
+
+
+}
+
+(function () {
+  const botaoiniciar = document.getElementById("iniciar");
+  const informacoes = document.getElementById("informacoes");
+  const tabuleiro = document.getElementById("tabuleiro");
+  const jogo = new jogoDaVelha(new JogadorHumano("X"), new JogadorHumano("O"));
+  const jogoDOM = new JogoDaVelhaDOM(tabuleiro,informacoes);
+  jogoDOM.inicializar(jogo);
+})();
